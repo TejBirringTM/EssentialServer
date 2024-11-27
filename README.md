@@ -2,66 +2,7 @@
 
 __Essential Server__ is just your everyday [Node.js](https://nodejs.org/) server written in [TypeScript](https://www.typescriptlang.org/), based on the [Express.js](https://expressjs.com/) web framework — designed to get new projects off the ground as quickly as possible.
 
-[See below for a full list of features.](#features)
-
-## Prerequisites
-
-* Node.js v22+
-
-## Getting Started
-
-### 1. Create a New Project
-
-#### Option A: Local Clone
-
-1. Using a terminal, run the command below to clone Essential Server into a new project directory: 
-
-    `npx degit TejBirringTM/EssentialServer <your_project_name>`
-
-2. Navigate to the local clone:
-
-    `cd <your_project_name>`
-
-#### Option B: New GitHub Repository
-
-1. Navigate to the [Essential Server GitHub repository](https://github.com/TejBirringTM/EssentialServer).
-2. Click 'Use this template' followed by `Create a new repository`.
-3. Follow the instructions provided by GitHub to clone Essential Server into a new repository for your project.
-4. Using a terminal, clone the newly-created project repository to your local machine.
-5. Navigate to the local clone:
-
-    `cd <your_project_name>`
-
-### 2. Install Dependencies
-
-From the terminal, install project dependencies: `npm install`
-
-### 3. (Optional) Perform Sanity Checks
-
-1. Ensure all tests pass.
-
-    From the terminal, run:
-`npm test`
-
-    If any test fails, please [submit a report here.](https://github.com/TejBirringTM/EssentialServer/issues)
-
-2. Run the server and test its endpoints.
-
-    From the terminal, run: `npm run start`
-
-    You can test the server by sending HTTP requests to the endpoints implemented in `src/routes/*.ts` files from a HTTP client like [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/).
-
-    Once you're done, exit the server by pressing `Ctrl + C` while in the terminal.
-
-### 4. Implement Server
-
-__Congratulations!__
-
-Now, it's time for you to implement your own server!
-
-[See here for more information about this.](#how-to-use)
-
-While you are developing, you will find this command helpful to start the server; it will restart the server every time a source file is modified: `npm run dev`
+[See below on how to get started ASAP.](#getting-started)
 
 ## Features
 
@@ -114,8 +55,66 @@ While you are developing, you will find this command helpful to start the server
     * Control caching behaviour of external caches (through middleware options pertaining to `Cache-Control` headers)
 * Currently uses internal memory store ([node-cache](https://www.npmjs.com/package/node-cache)).
 
-## How to Use
+## Prerequisites
 
+* Node.js v22+
+
+## Getting Started
+
+### 1. Create a New Project
+
+#### Option A: Local Clone
+
+1. Using a terminal, run the command below to clone Essential Server into a new project directory: 
+
+    `npx degit TejBirringTM/EssentialServer <your_project_name>`
+
+2. Navigate to the local clone:
+
+    `cd <your_project_name>`
+
+#### Option B: New GitHub Repository
+
+1. Navigate to the [Essential Server GitHub repository](https://github.com/TejBirringTM/EssentialServer).
+2. Click 'Use this template' followed by ;Create a new repository'.
+3. Follow the instructions provided by GitHub to clone Essential Server into a new repository for your project.
+4. Using a terminal, clone the newly-created project repository to your local machine.
+5. Navigate to the local clone:
+
+    `cd <your_project_name>`
+
+### 2. Install Dependencies
+
+From the terminal, install project dependencies: `npm install`
+
+### 3. (Optional) Perform Sanity Checks
+
+1. Ensure all tests pass.
+
+    From the terminal, run:
+`npm test`
+
+    If any test fails, please [submit a report here.](https://github.com/TejBirringTM/EssentialServer/issues)
+
+2. Run the server and test its endpoints.
+
+    From the terminal, run: `npm run start`
+
+    You can test the server by sending HTTP requests to the endpoints implemented in `src/routes/*.ts` files from a HTTP client like [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/).
+
+    Once you're done, exit the server by pressing `Ctrl + C` while in the terminal.
+
+### 4. Implement Server
+
+__Congratulations!__
+
+Now, it's time for you to implement your own server!
+
+[See here for more information about this.](#how-to-use)
+
+While you are developing, you will find this command helpful to start the server; it will restart the server every time a source file is modified: `npm run dev`
+
+## How to Use
 
 ### Folder Structure
 
