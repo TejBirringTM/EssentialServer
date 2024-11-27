@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
-import { config, isDevelopment } from './config';
+import config, { isDevelopment } from './config';
 import { errorHandler } from './middlewares/error.middleware';
 import path from 'path';
 import fs from 'fs';

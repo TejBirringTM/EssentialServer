@@ -42,7 +42,7 @@ try {
 }
 
 // Export validated configuration
-export const config = {
+const config = {
     env: env.NODE_ENV,
     port: env.PORT,
     corsOrigin: env.CORS_ORIGIN,
@@ -63,3 +63,5 @@ export const config = {
     },
     // Add other configuration properties here...
 } as const;
+
+export default config;

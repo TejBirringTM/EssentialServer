@@ -189,9 +189,9 @@ export const envSchema = z.object({
  });
 ```
 
-In `src/config.index.ts`:
+In `src/config/index.ts`:
 ```ts
-export const config = {
+const config = {
     env: env.NODE_ENV,
     port: env.PORT,
     // ... omitted for brevity
@@ -203,6 +203,8 @@ export const config = {
         },
     },
 } as const;
+
+export default config;
 ```
 
 ### Development

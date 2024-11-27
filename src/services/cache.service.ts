@@ -1,5 +1,5 @@
 import NodeCache from 'node-cache';
-import { config } from '../config';
+import config from '../config';
 import { EventEmitter } from 'events';
 
 class CacheService extends EventEmitter {
