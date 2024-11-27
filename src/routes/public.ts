@@ -6,24 +6,24 @@ import { cacheHandler } from '../middlewares/cache.middleware';
 const router = Router();
 
 router.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+    res.json({ status: 'ok' });
 });
 
 addValidatedRoute(
     router,
-    "post",
-    "/test",
+    'post',
+    '/test',
     {
         body: z.object({
             key: z.string(),
-        })
+        }),
     },
     cacheHandler(),
-    (req, res)=>{
+    (req, res) => {
         res.json({
-            notKey: `not ${req.body.key}!`
+            notKey: `not ${req.body.key}!`,
         });
-    }
+    },
 );
 
 export default router;

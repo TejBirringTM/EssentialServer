@@ -1,9 +1,12 @@
-import { SemVer } from "semver";
+import type { SemVer } from 'semver';
 
 export class ConfigError extends Error {
-    constructor(message: string, public errors?: unknown) {
-      super(message);
-      this.name = 'ConfigError';
+    constructor(
+        message: string,
+        public errors?: unknown,
+    ) {
+        super(message);
+        this.name = 'ConfigError';
     }
 }
 
