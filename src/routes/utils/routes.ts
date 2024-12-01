@@ -1,17 +1,18 @@
 import type { Router, RequestHandler } from 'express';
 import type core from 'express-serve-static-core';
 import { z } from 'zod';
+import zodToJsonSchema from 'zod-to-json-schema';
 
 export interface ValidationSchema {
-    params?: z.ZodType<core.ParamsDictionary>;
-    query?: z.ZodType<core.Query>;
-    body?: z.ZodType<object>;
+    params?: z.ZodType<core.ParamsDictionary> | z.ZodNull;
+    query?: z.ZodType<core.Query> | z.ZodNull;
+    body?: z.ZodType<object> | z.ZodNull;
 }
 
 type ValidatedRequestHandler<Schema extends ValidationSchema, ResponseBody> = RequestHandler<
     Schema['params'] extends z.ZodType ? z.infer<Schema['params']> : core.ParamsDictionary,
     ResponseBody,
-    Schema['body'] extends z.ZodType ? z.infer<Schema['body']> : any,
+    Schema['body'] extends z.ZodType ? z.infer<Schema['body']> : unknown,
     Schema['query'] extends z.ZodType ? z.infer<Schema['query']> : core.Query
 >;
 
@@ -53,16 +54,41 @@ const validateRequest =
         }
     };
 
+type HttpMethod = Extract<keyof Router, 'get' | 'post' | 'put' | 'delete' | 'patch'>;
+
+function describeRoute<Path extends string, Schema extends ValidationSchema>(
+    method: HttpMethod,
+    path: Path,
+    description: string,
+    schema: Schema,
+) {
+    console.log('here');
+    return ((req, res) => {
+        res.status(200).send({
+            method,
+            path,
+            description,
+            request: {
+                params: schema.params ? zodToJsonSchema(schema.params) : null,
+                query: schema.query ? zodToJsonSchema(schema.query) : null,
+                body: schema.body ? zodToJsonSchema(schema.body) : null,
+            },
+        });
+    }) satisfies RequestHandler;
+}
+
 export function addValidatedRoute<
     Path extends string,
     Schema extends ValidationSchema,
     ResponseBody,
 >(
     router: Router,
-    method: Extract<keyof Router, 'get' | 'post' | 'put' | 'delete' | 'patch'>,
+    method: HttpMethod,
     path: Path,
+    description: string,
     schema: Schema,
     ...handlers: ValidatedRequestHandler<Schema, ResponseBody>[]
 ) {
     router[method](path, validateRequest(schema), ...handlers);
+    router['get'](`${path}/help`, describeRoute(method, path, description, schema));
 }

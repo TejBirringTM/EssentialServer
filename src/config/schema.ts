@@ -19,6 +19,8 @@ export const envSchema = z.object({
 
     RATE_LIMIT_MAX: z.string().describe('').transform(Number).default('100'),
 
+    TRUSTED_N_PROXIES: z.number().describe('').default(0), // See: https://expressjs.com/en/guide/behind-proxies.html
+
     // Logging
     LOG_LEVEL: z
         .enum(['error', 'warn', 'info', 'http', 'debug', 'dev'])

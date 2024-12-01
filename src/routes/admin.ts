@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { cacheService } from '../services/cache.service';
+import { addValidatedRoute } from './utils/routes';
 
 const router = Router();
 
-router.get('/cache/stats', (req, res) => {
+addValidatedRoute(router, 'get', '/cache/status', 'Get cache status', {}, (req, res) => {
     const stats = cacheService.getStats();
     const keys = cacheService.getKeys();
     const memoryUsage = (() => {
@@ -19,21 +20,33 @@ router.get('/cache/stats', (req, res) => {
 
     res.json({
         stats,
+        totalNumKeys: keys.length,
         keys: keys.map(key => ({
             key,
             ttl: cacheService.getTtl(key),
         })),
-        totalKeys: keys.length,
         memoryUsage,
     });
 });
 
-router.delete('/cache/keys/:key', (req, res) => {
-    const deleted = cacheService.del(req.params.key);
-    res.json({ deleted });
-});
+addValidatedRoute(
+    router,
+    'delete',
+    '/cache/keys/:key',
+    'Delete a value from cache',
+    {},
+    (req, res) => {
+        const numDeleted = cacheService.del(req.params.key);
+        res.json({
+            message:
+                numDeleted > 0
+                    ? `${numDeleted} ${numDeleted === 1 ? 'value' : 'values'} deleted`
+                    : `Nothing to delete`,
+        });
+    },
+);
 
-router.post('/cache/flush', (req, res) => {
+addValidatedRoute(router, 'post', '/cache/flush', 'Clear cache', {}, (req, res) => {
     cacheService.flush();
     res.json({ message: 'Cache cleared' });
 });

@@ -1,0 +1,1 @@
+npm run tsc:check && npm run lint

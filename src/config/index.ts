@@ -51,6 +51,7 @@ const config = {
         windowMs: env.RATE_LIMIT_WINDOW_MS,
         max: env.RATE_LIMIT_MAX,
     },
+    nProxies: env.TRUSTED_N_PROXIES,
     cache: {
         enabled: env.CACHE_ENABLED,
         ttl: env.CACHE_TTL_S,

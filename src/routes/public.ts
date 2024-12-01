@@ -1,29 +1,17 @@
 import { Router } from 'express';
-import { z } from 'zod';
-import { addValidatedRoute } from './utils/validation';
-import { cacheHandler } from '../middlewares/cache.middleware';
+import { addValidatedRoute } from './utils/routes';
+// import { cacheHandler } from '../middlewares/cache.middleware';
 
 const router = Router();
 
-router.get('/health', (req, res) => {
+addValidatedRoute(router, 'get', '/health', 'Get server health status', {}, (req, res) => {
     res.json({ status: 'ok' });
 });
 
-addValidatedRoute(
-    router,
-    'post',
-    '/test',
-    {
-        body: z.object({
-            key: z.string(),
-        }),
-    },
-    cacheHandler(),
-    (req, res) => {
-        res.json({
-            notKey: `not ${req.body.key}!`,
-        });
-    },
-);
+addValidatedRoute(router, 'get', '/my-ip', 'Get own (client) IP address', {}, (req, res) => {
+    res.json({
+        ip: req.ip,
+    });
+});
 
 export default router;
