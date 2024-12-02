@@ -1,6 +1,6 @@
 # Essential Server (Node.js, Express.js, TypeScript)
 
-__Essential Server__ is just your everyday [Node.js](https://nodejs.org/) server written in [TypeScript](https://www.typescriptlang.org/), based on the [Express.js](https://expressjs.com/) web framework — designed to get new projects off the ground as quickly as possible.
+[__Essential Server__](https://github.com/TejBirringTM/EssentialServer) is just your everyday [Node.js](https://nodejs.org/) server written in [TypeScript](https://www.typescriptlang.org/), based on the [Express.js](https://expressjs.com/) web framework — designed to get new projects off the ground as quickly as possible.
 
 [See below on how to get started ASAP.](#getting-started)
 
