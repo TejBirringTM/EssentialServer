@@ -62,6 +62,9 @@ const config = {
         minor: version.minor,
         patch: version.patch,
     },
+    bearerTokens: {
+        admin: env.ADMIN_KEY,
+    },
     // Add other configuration properties here...
 } as const;
 

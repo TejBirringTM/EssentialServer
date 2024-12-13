@@ -38,6 +38,9 @@ export const envSchema = z.object({
         .transform(v => v === 'true')
         .default('true'),
 
+    // Admin Auth Key
+    ADMIN_KEY: z.string().describe(''),
+
     // Add more environment variables here...
 });
 

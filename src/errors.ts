@@ -23,3 +23,29 @@ export class ExternalServiceError extends Error {
         this.message = `${serviceName}: ${message}`;
     }
 }
+
+// for missing or bad authentication
+export class UnauthorisedError extends Error {
+    public status;
+    constructor(
+        message: string,
+        public errors?: unknown,
+    ) {
+        super(message);
+        this.name = 'UnauthorisedError';
+        this.status = 401;
+    }
+}
+
+// don’t have permission to access this resource
+export class ForbiddenError extends Error {
+    public status;
+    constructor(
+        message: string,
+        public errors?: unknown,
+    ) {
+        super(message);
+        this.name = 'ForbiddenError';
+        this.status = 403;
+    }
+}

@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import { cacheService } from '../services/cache.service';
 import { addValidatedRoute } from './utils/routes';
+import { bearerTokenAuthenticationHandler } from '../middlewares/authentication/bearer-token-authentication.middleware';
 
 const router = Router();
+router.use(bearerTokenAuthenticationHandler({ key: 'admin' }));
 
 addValidatedRoute(router, 'get', '/cache/status', 'Get cache status', {}, (req, res) => {
     const stats = cacheService.getStats();
